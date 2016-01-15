@@ -6,7 +6,17 @@ The approach taken by Enumify is heavily inspired by Java enums.
 
 ## The basics
 
+Install:
+
+```text
+npm install enumify
+```
+
+Use:
+
 ```js
+import {Enum} from 'enumify';
+
 class Color extends Enum {}
 Color.initEnum(['RED', 'GREEN', 'BLUE']);
 
