@@ -80,16 +80,13 @@ export class Enum {
     static enumValueOf(name) {
         return this.enumValues.find(x => x.name === name);
     }
-    
+
     /**
-     * Utility function for instances of the enum class: add
-     * the properties of `obj` to the receiver (`this`)
-     *
-    override(obj) {
-        Object.assign(this, obj);
-        return this;
+     * Make enum classes iterable
+     */
+    static [Symbol.iterator]() {
+        return this.enumValues[Symbol.iterator]();
     }
-    */
     
     /**
      * Default `toString()` method for enum constant.
