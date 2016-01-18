@@ -1,7 +1,7 @@
 {
   "name": "enumify",
   "version": "1.0.2",
-  "main": "./lib/enumify.js",
+  "main": "./src/enumify.js",
   "//": "babel-register is needed for mocha",
   "devDependencies": {
     "babel-cli": "^6.2.4",
