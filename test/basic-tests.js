@@ -2,10 +2,13 @@
 /* global suite */
 
 import * as assert from 'assert';
-import {Enum} from '../src/enumify';
+import {
+    Enum,
+    initEnum
+} from '../src/enumify';
 
 //-------------------------------------------------
-suite('Enum: simple');
+suite('Enum: simple (explicit class construction)');
 
 class Color extends Enum {}
 Color.initEnum(['RED', 'GREEN', 'BLUE']);
@@ -31,6 +34,15 @@ test('Class is closed (can’t be instantiated)', () => {
     assert.throws(() => {
         new Color();
     });
+});
+
+//-------------------------------------------------
+suite('Enum: simple (factory function)');
+
+const Body = initEnum(['HEAD', 'SHOULDERS', 'KNEES', 'TOES']);
+
+test('instanceof', () => {
+    assert.ok(Body.HEAD instanceof Body);
 });
 
 //-------------------------------------------------
