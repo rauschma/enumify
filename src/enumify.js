@@ -9,7 +9,7 @@ export class Enum {
     /**
      * `initEnum()` closes the class. Then calling this constructor
      * throws an exception.
-     * 
+     *
      * If your subclass has a constructor then you can control
      * what properties are added to `this` via the argument you
      * pass to `super()`. No arguments are fine, too.
@@ -26,7 +26,7 @@ export class Enum {
     }
     /**
      * Set up the enum, close the class.
-     * 
+     *
      * @param arg Either an object whose properties provide the names
      * and values (which must be mutable objects) of the enum constants.
      * Or an Array whose elements are used as the names of the enum constants
@@ -38,9 +38,9 @@ export class Enum {
             configurable: false,
             writable: false,
             enumerable: true,
-        });            
+        });
         if (Array.isArray(arg)) {
-            this._enumValuesFromArray(arg);            
+            this._enumValuesFromArray(arg);
         } else {
             this._enumValuesFromObject(arg);
         }
@@ -48,20 +48,20 @@ export class Enum {
         this[INITIALIZED] = true;
         return this;
     }
-    
+
     static _enumValuesFromArray(arr) {
         for (let key of arr) {
             this._pushEnumValue(new this(), key);
         }
     }
-    
+
     static _enumValuesFromObject(obj) {
         for (let key of Object.keys(obj)) {
             let value = new this(obj[key]);
             this._pushEnumValue(value, key);
         }
     }
-    
+
     static _pushEnumValue(enumValue, name) {
         enumValue.name = name;
         enumValue.ordinal = this.enumValues.length;
@@ -70,10 +70,10 @@ export class Enum {
             configurable: false,
             writable: false,
             enumerable: true,
-        });            
+        });
         this.enumValues.push(enumValue);
     }
-    
+
     /**
      * Given the name of an enum constant, return its value.
      */
@@ -87,7 +87,7 @@ export class Enum {
     static [Symbol.iterator]() {
         return this.enumValues[Symbol.iterator]();
     }
-    
+
     /**
      * Default `toString()` method for enum constant.
      */
@@ -103,4 +103,9 @@ export function copyProperties(target, source) {
         Object.defineProperty(target, key, desc);
     }
     return target;
+}
+
+export function initEnum(arg) {
+    const _enum = class extends Enum {};
+    return _enum.initEnum(arg);
 }
