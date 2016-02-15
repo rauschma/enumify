@@ -27,6 +27,14 @@ new Color();
     // Error: Enum classes can’t be instantiated
 ```
 
+Or (without explicit class construction):
+
+```js
+import {initEnum} from 'enumify';
+const Color = initEnum(['RED', 'GREEN', 'BLUE']);
+// etc...
+```
+
 ## Properties of enum classes
 
 Enums get a static property `enumValues`, which contains an Array with all enum values:
