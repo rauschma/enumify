@@ -11,10 +11,10 @@
   },
   "scripts": {
     "build": "babel src --out-dir lib",
-    "build-test-es5": "npm run build && babel test --out-dir test-es5 && sed -i '' 's/src\\/enumify/lib\\/enumify/' test-es5/enumify_test.js",
+    "build-test-es5": "npm run build && babel test --out-dir test-es5 && sed -i 's/src\\/enumify/lib\\/enumify/' test-es5/*.js",
     "watch": "babel src --out-dir lib --watch",
     "test": "mocha --ui qunit --compilers js:babel-register",
-    "mocha": "mocha --ui qunit",
+    "mocha": "mocha --ui qunit test-es5",
     "prepublish": "npm run build"
   },
   "babel": {
