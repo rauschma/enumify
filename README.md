@@ -19,7 +19,7 @@ npm install --save enumify2
 Use:
 
 ```js
-import {Enum} from 'enumify';
+import {Enum} from 'enumify2';
 
 class Color extends Enum {}
 Color.initEnum(['RED', 'GREEN', 'BLUE']);
