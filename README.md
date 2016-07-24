@@ -12,8 +12,8 @@ The approach taken by Enumify is heavily inspired by Java enums.
 
 Install:
 
-```text
-npm install enumify
+```sh
+npm install --save enumify2
 ```
 
 Use:
@@ -34,7 +34,7 @@ new Color();
 Or (without explicit class construction):
 
 ```js
-import {initEnum} from 'enumify';
+import {initEnum} from 'enumify2';
 const Color = initEnum(['RED', 'GREEN', 'BLUE']);
 // etc...
 ```
