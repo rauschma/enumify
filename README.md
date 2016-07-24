@@ -1,8 +1,12 @@
-# Enumify
+# enumify2
 
 A JavaScript library for enums. To be used by transpiled ES6 (e.g. via Babel).
 
 The approach taken by Enumify is heavily inspired by Java enums.
+
+## Difference to enumify?
+
+`enumify2` adds the `initEnum` export that allows you to avoid explicit class construction and reduces the overhead of creating an enum.
 
 ## The basics
 
