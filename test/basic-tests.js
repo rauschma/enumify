@@ -21,6 +21,9 @@ test('toString', () => {
 test('ordinal', () => {
     assert.strictEqual(Color.GREEN.ordinal, 1);
 });
+test('fromOrdinal', () => {
+    assert.strictEqual(Color.fromOrdinal(1), Color.GREEN);
+});
 test('enumValueOf', () => {
     assert.strictEqual(Color.enumValueOf('BLUE'), Color.BLUE);
 });
@@ -60,6 +63,9 @@ test('toString', () => {
 test('ordinal', () => {
     assert.strictEqual(TicTacToeColor.O.ordinal, 0);
     assert.strictEqual(TicTacToeColor.X.ordinal, 1);
+});
+test('fromOrdinal', () => {
+    assert.strictEqual(TicTacToeColor.fromOrdinal(1),TicTacToeColor.X);
 });
 
 //-------------------------------------------------
