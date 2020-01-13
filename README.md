@@ -1,93 +1,77 @@
 # Enumify
 
-A JavaScript library for enums. To be used by transpiled ES6 (e.g. via Babel).
+A JavaScript library that helps with the enum pattern. Also supports TypeScript.
 
-The approach taken by Enumify is heavily inspired by Java enums.
-
-## The basics
-
-Install:
+Installation:
 
 ```text
 npm install enumify
 ```
 
-Use:
+## Basic usage
 
-```js
-import {Enum} from 'enumify';
+```ts
+  class Color extends Enumify {
+    static red = new Color();
+    static orange = new Color();
+    static yellow = new Color();
+    static green = new Color();
+    static blue = new Color();
+    static purple = new Color();
+    static _ = this.closeEnum(); // TypeScript: Color.closeEnum()
+  }
 
-class Color extends Enum {}
-Color.initEnum(['RED', 'GREEN', 'BLUE']);
+  // Instance properties
+  assert.equal(
+    Color.red.enumKey, 'red');
+  assert.equal(
+    Color.red.enumOrdinal, 0);
+  
+  // Prototype methods
+  assert.equal(
+    'Color: ' + Color.red, // .toString()
+    'Color: Color.red');
+  
+  // Static `.enumKeys` and static `.enumValues`
+  assert.deepEqual(
+    Color.enumKeys,
+    ['red', 'orange', 'yellow', 'green', 'blue', 'purple']);
+  assert.deepEqual(
+    Color.enumValues,
+    [ Color.red, Color.orange, Color.yellow,
+      Color.green, Color.blue, Color.purple ]);
 
-console.log(Color.RED); // Color.RED
-console.log(Color.GREEN instanceof Color); // true
-
-new Color();
-    // Error: Enum classes can’t be instantiated
+  // Static `.enumValueOf()`
+  assert.equal(
+    Color.enumValueOf('yellow'),
+    Color.yellow);
+  
+  // Iterability
+  const result = [];
+  const iterated = [...Color];
+  for (const c of Color) {
+    result.push('Color: ' + c);
+  }
+  assert.deepEqual(
+    iterated, [
+      Color.red,
+      Color.orange,
+      Color.yellow,
+      Color.green,
+      Color.blue,
+      Color.purple,
+    ]);
 ```
 
-## Properties of enum classes
+## More examples
 
-Enums get a static property `enumValues`, which contains an Array with all enum values:
+See:
 
-```js
-for (const c of Color.enumValues) {
-    console.log(c);
-}
-// Output:
-// Color.RED
-// Color.GREEN
-// Color.BLUE
+* `ts/test/index_test.ts`
+* `ts/test/state.ts`
+
+Run tests like this (after compiling TypeScript, e.g. via `npm run build`):
+
 ```
-
-The inherited tool method `enumValueOf()` maps names to values:
-
-```js
-console.log(Color.enumValueOf('RED') === Color.RED); // true
-true
+npm t dist/test/index_test.js
 ```
-
-## Properties of enum values
-
-Enumify adds two properties to every enum value:
-
-* `name`: the name of the enum value.
-
-    ```repl
-    > Color.BLUE.name
-    'BLUE'
-    ```
-
-* `ordinal`: the position of the enum value within the Array `enumValues`.
-
-    ```repl
-    > Color.BLUE.ordinal
-    2
-    ```
-
-## Adding properties to enum values
-
-`initEnum()` also accepts an object as its parameter. That enables you to add properties to enum values:
-
-```js
-class TicTacToeColor extends Enum {}
-
-// Alas, data properties don’t work, because the enum
-// values (TicTacToeColor.X etc.) don’t exist when
-// the object literals are evaluated.
-TicTacToeColor.initEnum({
-    O: {
-        get inverse() { return TicTacToeColor.X },
-    },
-    X: {
-        get inverse() { return TicTacToeColor.O },
-    },
-});
-
-console.log(TicTacToeColor.O.inverse); // TicTacToeColor.X
-```
-
-## More information
-
-* The directory `test/` contains examples.

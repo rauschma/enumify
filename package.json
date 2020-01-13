@@ -1,31 +1,25 @@
 {
   "name": "enumify",
-  "version": "1.0.3",
-  "main": "./lib/enumify.js",
-  "//": "babel-register is needed for mocha",
-  "devDependencies": {
-    "babel-cli": "^6.2.4",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-register": "^6.2.0",
-    "mocha": "^2.2.5"
-  },
-  "scripts": {
-    "build": "babel src --out-dir lib",
-    "build-test-es5": "npm run build && babel test --out-dir test-es5 && sed -i '' 's/src\\/enumify/lib\\/enumify/' test-es5/enumify_test.js",
-    "watch": "babel src --out-dir lib --watch",
-    "test": "mocha --ui qunit --compilers js:babel-register",
-    "mocha": "mocha --ui qunit",
-    "prepublish": "npm run build"
-  },
-  "babel": {
-    "presets": [
-      "es2015"
-    ]
-  },
+  "version": "2.0.0",
   "author": "Axel Rauschmayer",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/rauschma/enumify"
+  },
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "scripts": {
+    "clean": "rm -rf dist/*",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "mocha --ui qunit",
+    "testall": "mocha --ui qunit dist/test",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^13.1.6",
+    "@types/mocha": "^5.2.7",
+    "mocha": "^7.0.0"
   }
 }
