@@ -75,3 +75,16 @@ Run tests like this (after compiling TypeScript, e.g. via `npm run build`):
 ```
 npm t dist/test/index_test.js
 ```
+
+## Support for public static fields
+
+The enum pattern and Enumify are based on public static fields. Support for them currently looks as follows:
+
+* [MDN lists support for public static fields in various JavaScript engines.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Class_fields#Browser_compatibility)
+* [Babel has the plugin `plugin-proposal-class-properties` for public static fields.](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties)
+* TypeScript has supported static fields in classes for a very long time.
+
+## Further reading
+
+* Blog post [“A class-based enum pattern for JavaScript”](https://2ality.com/2020/01/enum-pattern.html)
+* Blog post [“ECMAScript proposal: public class fields”](https://2ality.com/2019/07/public-class-fields.html)
