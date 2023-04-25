@@ -1,3 +1,5 @@
+import './polyfills/objectEntries';
+
 export class Enumify {
   
   //#################### Static
